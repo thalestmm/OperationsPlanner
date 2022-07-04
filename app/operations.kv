@@ -1,0 +1,520 @@
+<IconListItem>
+    IconLeftWidget:
+        icon: root.icon
+
+<FlightPlanLeg>
+    MDGridLayout:
+        id: leg_1
+        cols: 4
+        size_hint: (0.8,1)
+        pos_hint: {'center_x': 0.5}
+        adaptive_height: True
+        adaptive_width: True
+        size_hint_y: None
+        height: self.minimum_height
+        spacing: [30,0]
+
+        MDLabel:
+            text: '1.'
+            size: (20,20)
+            size_hint_x: None
+            width: 45
+        MDTextField:
+            id: dep
+            hint_text: 'DEP'
+            size_hint_x: None
+            width: 100
+            write_tab: False
+            max_text_length: 4
+        MDTextField:
+            id: arr
+            hint_text: 'ARR'
+            size_hint_x: None
+            width: 100
+            write_tab: False
+            max_text_length: 4
+        MDTextField:
+            id: alt
+            hint_text: 'ALT'
+            size_hint_x: None
+            width: 100
+            write_tab: False
+            max_text_length: 4
+
+
+MDScreen:
+    size_hint: (1,1)
+
+    MDBoxLayout:
+        id: main_layout
+        orientation: 'vertical'
+        size_hint_y: 1
+        size_hint_x: 1
+
+        MDTopAppBar:
+            md_bg_color: app.theme_cls.accent_color
+            left_action_items: [["menu"]]
+            right_action_items: [["theme-light-dark", lambda x: app.switch_themes()],["reload", lambda x: app.clear_planner()]]
+
+        MDTextField:
+            id: project_selection
+            pos_hint: {'center_x': .5, 'center_y': .6}
+            size_hint_x: None
+            width: "200dp"
+            height: self.minimum_height
+            hint_text: "Escolha o Projeto"
+            on_focus: if self.focus: app.menu.open()
+
+        MDBoxLayout:
+            id: takeoff_header
+            orientation: 'vertical'
+            size_hint: (0.8,0.2)
+            pos_hint: {'center_x': 0.5}
+            adaptive_height: False
+            adaptive_width: False
+            padding: 20
+
+            MDIconButton:
+                icon: 'airplane-clock'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+                user_font_size: 50
+                on_release: app.show_time_picker()
+
+            MDLabel:
+                id: takeoff_time
+                halign: 'center'
+                text: 'Selecione um horário'
+                user_font_size: 20
+
+        MDTextField:
+            id: trip_weight
+            text: '300'
+            hint_text: 'Peso Trip'
+            pos_hint: {'center_x': 0.5}
+            size_hint: (0.2,None)
+
+        ScrollView:
+            id: planner_scroll_view
+            do_scroll_x: False
+            do_scroll_y: True
+            pos_hint: {'center_x': .5}
+            size_hint: (0.8,0.8)
+            adaptive_height: True
+            scroll_distance: 30
+
+            MDBoxLayout:
+                id: flight_planner_layout
+                size_hint_x: 1
+                size_hint_y: None
+                orientation: 'vertical'
+                pos_hint: {'center_x': .5}
+                adaptive_height: True
+
+                MDGridLayout:
+                    id: leg_1
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '1.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_1
+                        hint_text: 'DEP'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_1
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_1
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_2
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '2.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_2
+                        hint_text: 'DEP'
+                        text: root.ids.arr_1.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_2
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_2
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_3
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '3.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_3
+                        hint_text: 'DEP'
+                        text: root.ids.arr_2.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_3
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_3
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_4
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '4.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_4
+                        hint_text: 'DEP'
+                        text: root.ids.arr_3.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_4
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_4
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_5
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '5.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_5
+                        hint_text: 'DEP'
+                        text: root.ids.arr_4.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_5
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_5
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_6
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '6.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_6
+                        hint_text: 'DEP'
+                        text: root.ids.arr_5.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_6
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_6
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_7
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '7.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_7
+                        hint_text: 'DEP'
+                        text: root.ids.arr_6.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_7
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_7
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_8
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '8.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_8
+                        hint_text: 'DEP'
+                        text: root.ids.arr_7.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_8
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_8
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_9
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '9.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_9
+                        hint_text: 'DEP'
+                        text: root.ids.arr_8.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_9
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_9
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+                MDGridLayout:
+                    id: leg_10
+                    cols: 4
+                    size_hint: (0.8,1)
+                    pos_hint: {'center_x': 0.5}
+                    adaptive_height: True
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: [30,0]
+
+                    MDLabel:
+                        text: '10.'
+                        size: (20,20)
+                        size_hint_x: None
+                        width: 45
+                    MDTextField:
+                        id: dep_10
+                        hint_text: 'DEP'
+                        text: root.ids.arr_9.text
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: arr_10
+                        hint_text: 'ARR'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+                    MDTextField:
+                        id: alt_10
+                        hint_text: 'ALT'
+                        size_hint_x: None
+                        width: 100
+                        write_tab: False
+                        max_text_length: 4
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            id: footer
+            pos_hint: {'center_x': .5, 'center_y': 0.08}
+            size_hint: (1,0.3)
+
+            MDFloatingActionButton:
+                id: add_leg_button
+                md_bg_color: (1,0.7,0.2,1)
+                icon: 'airplane-takeoff'
+                user_font_size: 70
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: app.export_flight_plan()
+
+            MDLabel:
+                text: f'v. {app.build_version}'
+                font_size: 20
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
